@@ -67,7 +67,7 @@ def main():
             print("{}: {}\n".format(key, value))
             f.write("{}: {}\n".format(key, value))
 
-    df = pd.read_csv(os.path.join(data_path, 'dppi.txt'), sep=',', names=['src', 'dst', 't', 'w'])
+    df = pd.read_csv(os.path.join(data_path, 'network.txt'), sep=',', names=['src', 'dst', 't', 'w'])
 
     df.src = df.src.astype(str)
     df.dst = df.dst.astype(str)
@@ -144,9 +144,9 @@ def get_structural_sim_network(ppi_graph, nodes_st, opt):
 
     import networkx as nx
     try:
-        dgdv = np.loadtxt(os.path.join(data_path, 'output/sorted_output_dgdv_4_4_1.txt'))
+        dgdv = np.loadtxt(os.path.join(data_path, 'dynamic_graphlets/sorted_output_dgdv_4_4_1.txt'))
     except Exception:
-        dgdv = np.loadtxt(os.path.join(data_path, 'output/sorted_output_dgdv_4_5_1.txt'))
+        dgdv = np.loadtxt(os.path.join(data_path, 'dynamic_graphlets/sorted_output_dgdv_4_5_1.txt'))
     scaler = StandardScaler()
     scaled_dgdv = scaler.fit_transform(dgdv)
 
