@@ -1,6 +1,7 @@
 # Temporal-Structural Random Walk: Unifying Structural Proximity and Equivalence in Dynamic Networks
 
 ## Installation
+The code was tested on Python 3.7.11. The requirements are in `setup.py`.
 ```
 cd temporal_structural_walk
 pip install .
