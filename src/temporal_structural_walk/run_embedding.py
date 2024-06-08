@@ -132,6 +132,8 @@ def run_cross_walk(ppi_graph, opt, label, nodes_st):
         embeddings = sort_embeddings(cross_walk_model, embedding_dim, nodes_st)
         print(f'-------alpha: {alpha}-------')
         result = train(embeddings, label, class_type=opt['class_type'], to_print=True)
+        if opt['save_embeddings']:
+            np.savetxt(os.path.join(save_dir, f'embedding_alpha_{alpha}.txt'), embeddings)
 
     return result
 
