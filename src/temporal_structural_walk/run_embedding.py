@@ -89,9 +89,10 @@ def main():
     df_label = pd.read_csv(os.path.join(data_path, 'df_label.csv'), index_col=0)
     label = df_label.to_numpy()
     assert label.shape[0] == len(nodes_int)
+    if opt['save_embeddings']:
+        np.savetxt(os.path.join(save_dir, f'label.txt'), label)
 
     run_cross_walk(dynamic_graph, opt=opt, label=label, nodes_st=nodes_st)
-
 
 
 def run_cross_walk(ppi_graph, opt, label, nodes_st):
