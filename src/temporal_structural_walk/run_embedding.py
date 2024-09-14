@@ -105,7 +105,7 @@ def run_cross_walk(ppi_graph, opt, label, nodes_st):
     if opt['all']:
         alphas = np.concatenate([np.arange(0, 1, 0.025), [1]])
     else:
-        alphas = [opt['alpha']]
+        alphas = [0, opt['alpha']]
     num_cw = len(nodes_st) * num_walks_per_node * (walk_length - window_size + 1)
     structural_graph = get_structural_sim_network(ppi_graph, nodes_st, opt)
     cross_temporal_rw = TemporalStructuralRandomWalk(ppi_graph, structural_graph=structural_graph)
@@ -203,6 +203,9 @@ def run_deepwalk(ppi_graph, opt, label, nodes_st):
     static_embeddings = sort_embeddings(static_model, embedding_dim, nodes_st)
     train(static_embeddings, label, class_type=opt['class_type'], to_print=True)
 
+    if opt['save_embeddings']:
+        np.savetxt(os.path.join(save_dir, f'deepwalk.txt'), static_embeddings)
+
     return static_embeddings
 
 
@@ -258,7 +261,7 @@ def run_baselines(ppi_graph, opt, label, nodes_st):
 
     i = np.argmax(max_prs)
     if opt['save_embeddings']:
-        np.savetxt(os.path.join(save_dir, 'static.txt'), embs[i])
+        np.savetxt(os.path.join(save_dir, 'node2vec.txt'), embs[i])
 
     print(f'optimal p: {ps[i]}, optimal q: {qs[i]}')
     pretty_print_dict(results[i])
