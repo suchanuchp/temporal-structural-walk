@@ -56,7 +56,8 @@ def train_multiclass(xs, ys, n_splits=5, to_print=True, random_state=0):
     else:
         ys = ys if (len(ys.shape) == 1) else ys.flatten()
         int_labels = ys
-
+    n_splits = np.min([n_splits, np.min(np.sum(ys, axis=0))])
+    print(f'n splits: {n_splits}')
     kf = StratifiedKFold(n_splits=n_splits, random_state=random_state, shuffle=True)
     kf.get_n_splits(xs, int_labels)
     splits = kf.split(xs, int_labels)
