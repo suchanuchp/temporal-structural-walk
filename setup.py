@@ -31,7 +31,8 @@ setup(name=package_name,
           'tqdm',
           'numpy',
           'pandas',
-          'scipy',
+          'scipy==1.10.1',
+          'chardet==5.2.0',
       ],
       extras_require={
           'dev': [
